@@ -39,19 +39,6 @@ const mapStateToProps = (
     }
 }
 
-const mapDispatchToProps = (dispatch: Dispatch, props: IOwnProps) => ({
-    loadRequests: () => {
-        // We need the server object; we'll get it from state via thunk-like approach
-        // Actually, the epic expects the server, so we pass a wrapper
-    },
-    selectRequest: (request: IWiremockRequest) => {
-        dispatch(selectRequest(props.serverName, request))
-    },
-    closeDetail: () => {
-        dispatch(closeRequestDetail(props.serverName))
-    },
-})
-
 // We need a merged props approach to access server from state in dispatch
 const mergeProps = (
     stateProps: IPropsFromState,
@@ -82,4 +69,4 @@ export default connect(
     mapStateToProps,
     mapDispatchToPropsRaw,
     mergeProps
-)(RequestsList)
+)(RequestsList as any)

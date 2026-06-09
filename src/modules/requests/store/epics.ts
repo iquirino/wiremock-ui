@@ -13,7 +13,7 @@ import {
 import { IWiremockRequest } from '../types'
 import { RequestsActionTypes } from './types'
 
-export const shouldLoadServerRequestsEpic: Epic<RequestsAction, any, IApplicationState> = (action$, state$) =>
+export const shouldLoadServerRequestsEpic: Epic<RequestsAction, any, IApplicationState> = (action$, _state$) =>
     action$.pipe(
         ofType(RequestsActionTypes.LOAD_SERVER_REQUESTS),
         mergeMap(({ payload }: ILoadServerRequestsAction) => {
@@ -21,7 +21,7 @@ export const shouldLoadServerRequestsEpic: Epic<RequestsAction, any, IApplicatio
         })
     )
 
-export const loadServerRequestsEpic: Epic<RequestsAction, any, IApplicationState> = (action$, state$) =>
+export const loadServerRequestsEpic: Epic<RequestsAction, any, IApplicationState> = (action$, _state$) =>
     action$.pipe(
         ofType(RequestsActionTypes.LOAD_SERVER_REQUESTS_REQUEST),
         mergeMap(({ payload }: ILoadServerRequestsRequestAction) =>

@@ -7,7 +7,7 @@ import RequestsListContainer from './containers/RequestsListContainer'
 export const requestsContentTypes = [
     {
         id: 'requests',
-        renderButton: (context: IContentRenderContext<IData>) => 'requests',
+        renderButton: (_context: IContentRenderContext<IData>) => 'requests',
         renderIcon: () => <RequestsIcon/>,
         renderPane: (context: IContentRenderContext<IData>) => (
             <RequestsListContainer

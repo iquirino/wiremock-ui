@@ -1,4 +1,4 @@
-import { Store, createStore, applyMiddleware, compose } from 'redux'
+import { Store, createStore, applyMiddleware, compose, Middleware } from 'redux'
 import { createEpicMiddleware } from 'redux-observable'
 import { notificationsMiddleware } from 'edikit'
 import { serversPersistMiddleware } from './modules/servers'
@@ -7,8 +7,8 @@ import { IApplicationState, rootReducer, rootEpic } from './store'
 export default function configureStore(): Store<IApplicationState> {
     const epicMiddleware = createEpicMiddleware()
 
-    const middlewares = [
-        epicMiddleware,
+    const middlewares: Middleware[] = [
+        epicMiddleware as unknown as Middleware,
         notificationsMiddleware,
         serversPersistMiddleware,
     ]
@@ -25,7 +25,7 @@ export default function configureStore(): Store<IApplicationState> {
         )
     )
 
-    epicMiddleware.run(rootEpic)
+    epicMiddleware.run(rootEpic as any)
 
     return store
 }

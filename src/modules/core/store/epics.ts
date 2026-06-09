@@ -10,7 +10,7 @@ import { CoreActionTypes } from './types'
 export const loadStateEpic: Epic<IAction, any> = action$ =>
     action$.pipe(
         ofType(CoreActionTypes.LOAD_STATE),
-        mergeMap((action: typeof loadState) => {
+        mergeMap((_action: typeof loadState) => {
             const theme = localStorage.getItem('theme') || 'solarized dark'
             const actions: IAction[] = [initSettings({
                 theme

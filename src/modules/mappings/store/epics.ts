@@ -45,7 +45,7 @@ export const shouldLoadServerMappingsEpic: Epic<MappingsAction, any, IApplicatio
         })
     )
 
-export const loadServerMappingsEpic: Epic<MappingsAction, any, IApplicationState> = (action$, state$) =>
+export const loadServerMappingsEpic: Epic<MappingsAction, any, IApplicationState> = (action$, _state$) =>
     action$.pipe(
         ofType(MappingsActionTypes.LOAD_SERVER_MAPPINGS_REQUEST),
         mergeMap(({ payload }: ILoadServerMappingsRequestAction) =>
@@ -87,7 +87,7 @@ export const createMappingEpic: Epic<MappingsAction, any, IApplicationState> = (
             if (server === undefined) return EMPTY
 
             return createMapping(server, omit(payload.mapping, ['id', 'uuid'])).pipe(
-                mergeMap(({ response: mapping }) => from([
+                mergeMap(({ response: mapping }: any) => from([
                     removeContentFromAllPanesAction(
                         'default',
                         `${server.name}.mapping.create.${payload.creationId}`,
@@ -126,7 +126,7 @@ export const updateMappingEpic: Epic<MappingsAction, any, IApplicationState> = (
             if (server === undefined) return EMPTY
 
             return updateMapping(server, payload.mapping).pipe(
-                map(({ response: mapping }) => updateMappingSuccess(
+                map(({ response: mapping }: any) => updateMappingSuccess(
                     payload.serverName,
                     payload.mappingId,
                     mapping
