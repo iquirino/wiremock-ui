@@ -4,6 +4,7 @@ import path from 'path'
 
 export default defineConfig({
   plugins: [react()],
+  base: process.env.BASE_URL || '/',
   resolve: {
     alias: {
       edikit: path.resolve(__dirname, 'src/edikit'),
